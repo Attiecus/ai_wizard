@@ -11,7 +11,7 @@ os.environ['PANDASAI_API_KEY'] = '$2a$10$IGYkEHGfkhN4uVNZ34EBI.FaL5CkQD/YuZsgdCL
 
 # Set page configuration
 st.set_page_config(page_title="ADNIC AI DEPDUP", page_icon=":bar_chart:", layout='wide')
-
+st.set_theme('dark')
 # Define file path globally
 file_path = "modified_data.xlsx"
 background_image_url = "https://e0.pxfuel.com/wallpapers/53/768/desktop-wallpaper-abstract-technology-background-network-connection-structure-sc-high-resolution.jpg"
