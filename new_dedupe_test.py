@@ -28,8 +28,8 @@ background_image_style = f"""
 """
 
 # Apply the CSS styling to the page
-st.markdown(background_image_style, unsafe_allow_html=True)
-st.markdown(dark_theme_css, unsafe_allow_html=True)
+st.markdown(background_image_style,dark_theme_css, unsafe_allow_html=True)
+
 
 @st.cache(allow_output_mutation=True)
 def process_file(df, use_saved_settings=False, settings_path="dedupe_settings"):
