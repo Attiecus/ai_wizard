@@ -12,24 +12,33 @@ os.environ['PANDASAI_API_KEY'] = '$2a$10$IGYkEHGfkhN4uVNZ34EBI.FaL5CkQD/YuZsgdCL
 # Set page configuration
 st.set_page_config(page_title="ADNIC AI DEPDUP", page_icon=":bar_chart:", layout='wide')
 
-# Define file path globally
-file_path = "modified_data.xlsx"
-background_image_url = "https://e0.pxfuel.com/wallpapers/53/768/desktop-wallpaper-abstract-technology-background-network-connection-structure-sc-high-resolution.jpg"
+dark_theme_css = """
+    <style>
+        body {
+            color: white;
+        }
+        .stApp {
+            color: white;
+            /* Add more custom CSS styles for specific elements as needed */
+        }
+        /* Adjust the background color if necessary */
+    </style>
+"""
 
-# Define the CSS styling with the background image
+# Apply the custom CSS
+st.markdown(dark_theme_css, unsafe_allow_html=True)
+
+# Set the background image
+background_image_url = "https://e0.pxfuel.com/wallpapers/53/768/desktop-wallpaper-abstract-technology-background-network-connection-structure-sc-high-resolution.jpg"
 background_image_style = f"""
     <style>
         .stApp {{
             background-image: url('{background_image_url}');
             background-size: cover;
-            
         }}
     </style>
 """
-
-# Apply the CSS styling to the page
-st.markdown(background_image_style,dark_theme_css, unsafe_allow_html=True)
-
+st.markdown(background_image_style, unsafe_allow_html=True)
 
 @st.cache(allow_output_mutation=True)
 def process_file(df, use_saved_settings=False, settings_path="dedupe_settings"):
