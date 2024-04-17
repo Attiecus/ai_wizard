@@ -119,7 +119,7 @@ def main():
         
         # Check if the new entry already exists
        
-        st.error("This entry already exists in the DataFrame.")
+        
         # Display DataFrame with similar values
         similar_entries_df = st.session_state.modif[ 
                                                         (st.session_state.modif["Emirates ID"] == new_entry["Emirates ID"]) | 
