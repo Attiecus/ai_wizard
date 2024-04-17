@@ -161,10 +161,10 @@ def main():
 
     if processed_df is not None:
             st.write("Updated DataFrame:")
-            st.dataframe(modif, width=1000)
+            st.dataframe(modif, width=5000)
             merged_df = merge_entries_by_cluster(processed_df)
             st.write("Merged DataFrame based on Cluster ID:")
-            st.dataframe(merged_df, width=1000)
+            st.dataframe(merged_df, width=5000)
             st.success("Merged data set saved as 'merged_data_set.xlsx'.")
 
             # Allow users to download the merged data set
