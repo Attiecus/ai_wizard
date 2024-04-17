@@ -46,7 +46,6 @@ dark_theme_css = """
 st.markdown(dark_theme_css, unsafe_allow_html=True)
 
 
-@st.cache(allow_output_mutation=True)
 def process_file(df, use_saved_settings=False, settings_path="dedupe_settings"):
     if df.empty:
         st.warning("The DataFrame is empty.")
