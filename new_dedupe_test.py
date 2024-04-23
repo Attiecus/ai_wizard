@@ -7,7 +7,7 @@ import os
 import datetime as dt
 
 # Set environment variables
-os.environ['PANDASAI_API_KEY'] = '$2a$10$zVNW0nSbe4P3Fd2iGQ9faOxclSPiXH9vTahIV/xGZqsoFfoQdQ6He'
+os.environ['PANDASAI_API_KEY'] = '$2a$10$IGYkEHGfkhN4uVNZ34EBI.FaL5CkQD/YuZsgdCLn/Y9pz2SMFpVdG'
 
 # Set page configuration
 st.set_page_config(page_title="ADNIC AI DEPDUP", page_icon=":bar_chart:", layout='wide')
@@ -32,7 +32,7 @@ st.markdown(background_image_style, unsafe_allow_html=True)
 dark_theme_css = """
     <style>
         body {
-            color: black;
+            color: white;
         }
         .stApp {
             color: white;
@@ -44,8 +44,7 @@ dark_theme_css = """
 
 # Apply the custom CSS
 st.markdown(dark_theme_css, unsafe_allow_html=True)
-
-
+@st.cache(allow_output_mutation=True)
 def process_file(df, use_saved_settings=False, settings_path="dedupe_settings"):
     if df.empty:
         st.warning("The DataFrame is empty.")
@@ -134,7 +133,7 @@ def main():
         
         # Check if the new entry already exists
        
-        
+        st.error("This entry already exists in the DataFrame.")
         # Display DataFrame with similar values
         similar_entries_df = st.session_state.modif[ 
                                                         (st.session_state.modif["Emirates ID"] == new_entry["Emirates ID"]) | 
@@ -159,11 +158,11 @@ def main():
         
 
     if processed_df is not None:
-            st.header("Updated DataFrame:")
-            st.dataframe(modif, width=5000)
+            st.write("Updated DataFrame:")
+            st.dataframe(modif, width=1000)
             merged_df = merge_entries_by_cluster(processed_df)
-            st.header("Merged DataFrame based on Cluster ID:")
-            st.dataframe(merged_df, width=5000)
+            st.write("Merged DataFrame based on Cluster ID:") 
+            st.dataframe(merged_df, width=1000)
             st.success("Merged data set saved as 'merged_data_set.xlsx'.")
 
             # Allow users to download the merged data set
@@ -174,14 +173,13 @@ def main():
         
             df = SmartDataframe(st.session_state.modif)  
     with st.spinner("AI IS RETRIEVING YOUR ANSWER..."):
-        st.subheader("CHAT WITH YOUR DATA :wave:")
-        st.write(":robot_face: POWERED BY OPENAI")
-        with st.chat_message("user"):
-            st.write("Hello 👋")
-            query = st.chat_input("Enter your question:")
-            st.write("Query:", query)  # Add this line for debugging
+            st.subheader("CHAT WITH YOUR DATA :wave:")
+            st.write(":robot_face: POWERED BY OPENAI")
+            with st.chat_message("user"):
+                st.write("Hello 👋")
+                query = st.chat_input("Enter your question:")
 
-            if query is not None:
+            if query:
                 if query.lower().startswith("show entry"):
                     query_parts = query.split()
                     entry_index = int(query_parts[-1])  # Extract the index of the entry from the query
@@ -191,14 +189,9 @@ def main():
                     else:
                         st.error("Invalid entry index.")
                 else:
-                    st.write("User question:", query)
-                    if df is None:
-                        st.error("SmartDataframe is not initialized.")
-                    else:
-                        response = df.chat(query)
-                        st.success(response)
-            else:
-                st.error("Query is None.")
+                    st.write("User question:",query)
+                    response = df.chat(query)
+                    st.success(response)
 
     # Count duplicate and unique values
     if "modif" in st.session_state:
