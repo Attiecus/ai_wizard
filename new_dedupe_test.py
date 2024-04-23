@@ -172,7 +172,7 @@ def main():
             towrite.seek(0)
             st.download_button("Download Merged Data Set", towrite, "merged_data_set.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         
-            df = SmartDataframe(st.session_state.modif)  
+            df = SmartDataframe(modif)  
             with st.spinner("AI IS RETRIEVING YOUR ANSWER..."):
                 st.subheader("CHAT WITH YOUR DATA :wave:")
                 st.write(":robot_face: POWERED BY OPENAI")
