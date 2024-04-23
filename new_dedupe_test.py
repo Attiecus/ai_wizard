@@ -174,13 +174,14 @@ def main():
         
             df = SmartDataframe(st.session_state.modif)  
     with st.spinner("AI IS RETRIEVING YOUR ANSWER..."):
-            st.subheader("CHAT WITH YOUR DATA :wave:")
-            st.write(":robot_face: POWERED BY OPENAI")
-            with st.chat_message("user"):
-                st.write("Hello 👋")
-                query = st.chat_input("Enter your question:")
+        st.subheader("CHAT WITH YOUR DATA :wave:")
+        st.write(":robot_face: POWERED BY OPENAI")
+        with st.chat_message("user"):
+            st.write("Hello 👋")
+            query = st.chat_input("Enter your question:")
+            st.write("Query:", query)  # Add this line for debugging
 
-            
+            if query is not None:
                 if query.lower().startswith("show entry"):
                     query_parts = query.split()
                     entry_index = int(query_parts[-1])  # Extract the index of the entry from the query
@@ -190,9 +191,14 @@ def main():
                     else:
                         st.error("Invalid entry index.")
                 else:
-                    st.write("User question:",query)
-                    response = df.chat(query)
-                    st.success(response)
+                    st.write("User question:", query)
+                    if df is None:
+                        st.error("SmartDataframe is not initialized.")
+                    else:
+                        response = df.chat(query)
+                        st.success(response)
+            else:
+                st.error("Query is None.")
 
     # Count duplicate and unique values
     if "modif" in st.session_state:
