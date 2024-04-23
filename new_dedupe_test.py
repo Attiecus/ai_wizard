@@ -173,16 +173,16 @@ def main():
             st.download_button("Download Merged Data Set", towrite, "merged_data_set.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         
             df = SmartDataframe(st.session_state.modif)  
-    with st.spinner("AI IS RETRIEVING YOUR ANSWER..."):
-        st.subheader("CHAT WITH YOUR DATA :wave:")
-        st.write(":robot_face: POWERED BY OPENAI")
-        with st.chat_message("user"):
-            st.write("Hello 👋")
-            query = st.chat_input("Enter your question:")
-
-            st.write("User question:", query)
-            response = df.chat(query)
-            st.success(response)
+            with st.spinner("AI IS RETRIEVING YOUR ANSWER..."):
+                st.subheader("CHAT WITH YOUR DATA :wave:")
+                st.write(":robot_face: POWERED BY OPENAI")
+                with st.chat_message("user"):
+                    st.write("Hello 👋")
+                    query = st.chat_input("Enter your question:")
+        
+                    st.write("User question:", query)
+                    response = df.chat(query)
+                    st.success(response)
 
     # Count duplicate and unique values
     if "modif" in st.session_state:
