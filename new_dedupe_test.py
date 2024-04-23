@@ -7,7 +7,7 @@ import os
 import datetime as dt
 
 # Set environment variables
-os.environ['PANDASAI_API_KEY'] = '$2a$10$IGYkEHGfkhN4uVNZ34EBI.FaL5CkQD/YuZsgdCLn/Y9pz2SMFpVdG'
+os.environ['PANDASAI_API_KEY'] = '$2a$10$zVNW0nSbe4P3Fd2iGQ9faOxclSPiXH9vTahIV/xGZqsoFfoQdQ6He'
 
 # Set page configuration
 st.set_page_config(page_title="ADNIC AI DEPDUP", page_icon=":bar_chart:", layout='wide')
