@@ -133,7 +133,7 @@ def main():
         
         # Check if the new entry already exists
        
-        st.error("This entry already exists in the DataFrame.")
+        #st.error("This entry already exists in the DataFrame.")
         # Display DataFrame with similar values
         similar_entries_df = st.session_state.modif[ 
                                                         (st.session_state.modif["Emirates ID"] == new_entry["Emirates ID"]) | 
@@ -159,10 +159,10 @@ def main():
 
     if processed_df is not None:
             st.write("Updated DataFrame:")
-            st.dataframe(modif, width=1000)
+            st.dataframe(modif, width=5000)
             merged_df = merge_entries_by_cluster(processed_df)
             st.write("Merged DataFrame based on Cluster ID:") 
-            st.dataframe(merged_df, width=1000)
+            st.dataframe(merged_df, width=5000)
             st.success("Merged data set saved as 'merged_data_set.xlsx'.")
 
             # Allow users to download the merged data set
