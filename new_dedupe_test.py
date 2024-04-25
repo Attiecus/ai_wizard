@@ -32,7 +32,7 @@ st.markdown(background_image_style, unsafe_allow_html=True)
 dark_theme_css = """
     <style>
         body {
-            color: white;
+            color: black;
         }
         .stApp {
             color: white;
